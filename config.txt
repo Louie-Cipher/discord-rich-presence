@@ -1,0 +1,11 @@
+clientId=836247609029951599
+text1=Ranked
+text2=
+largeImageKey=whatsappgold
+largeImageText=
+smallImageKey=
+smallImageText=
+startTimestamp=
+endTimestamp=
+buttonURL=
+buttonText=
