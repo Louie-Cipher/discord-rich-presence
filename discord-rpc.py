@@ -81,7 +81,7 @@ with open("config.txt", "r") as f:
             startTimestamp = line.split("=")[1].strip()
         elif line.startswith("endTimestamp"):
             endTimestamp = line.split("=")[1].strip()
-        elif line.startswith("buttonLink"):
+        elif line.startswith("buttonURL"):
             buttonURL = line.split("=")[1].strip()
         elif line.startswith("buttonText"):
             buttonText = line.split("=")[1].strip()
