@@ -22,7 +22,6 @@ ARGUMENTS:
 -url --buttonURL <buttonURL>  URL do botão
 -bt --buttonText <buttonText> texto do botão"""
         )
-        input()
         sys.exit()
 
 # if there not a config.txt file, create one then write the default values
@@ -86,31 +85,31 @@ with open("config.txt", "r") as f:
         elif line.startswith("buttonText"):
             buttonText = line.split("=")[1].strip()
 
-# if there is arguments, overwrite the properties
+# read the properties from the arguments, overriding the config.txt file
 if len(sys.argv) > 1:
     for i in range(1, len(sys.argv)):
-        if sys.argv[i] == "--clientId" or sys.argv[i] == "-id":
+        if sys.argv[i] == "-id" or sys.argv[i] == "--clientId":
             clientId = sys.argv[i + 1]
-        elif sys.argv[i] == "--text1" or sys.argv[i] == "-t1":
-            text1 = sys.argv[i + 1]
-        elif sys.argv[i] == "--text2" or sys.argv[i] == "-t2":
-            text2 = sys.argv[i + 1]
-        elif sys.argv[i] == "--large-image" or sys.argv[i] == "-li":
+        elif sys.argv[i] == "-t1" or sys.argv[i] == "--text1":
+            text1 = " ".join(sys.argv[i + 1 :]).split("-")[0].strip()
+        elif sys.argv[i] == "-t2" or sys.argv[i] == "--text2":
+            text2 = " ".join(sys.argv[i + 1 :]).split("-")[0].strip()
+        elif sys.argv[i] == "-li" or sys.argv[i] == "--large-image":
             largeImageKey = sys.argv[i + 1]
-        elif sys.argv[i] == "--large-text" or sys.argv[i] == "-lt":
-            largeImageText = sys.argv[i + 1]
-        elif sys.argv[i] == "--small-image" or sys.argv[i] == "-si":
+        elif sys.argv[i] == "-lt" or sys.argv[i] == "--large-text":
+            largeImageText = " ".join(sys.argv[i + 1 :]).split("-")[0].strip()
+        elif sys.argv[i] == "-si" or sys.argv[i] == "--small-image":
             smallImageKey = sys.argv[i + 1]
-        elif sys.argv[i] == "--small-text" or sys.argv[i] == "-st":
-            smallImageText = sys.argv[i + 1]
-        elif sys.argv[i] == "--start" or sys.argv[i] == "-s":
+        elif sys.argv[i] == "-st" or sys.argv[i] == "--small-text":
+            smallImageText = " ".join(sys.argv[i + 1 :]).split("-")[0].strip()
+        elif sys.argv[i] == "-s" or sys.argv[i] == "--start":
             startTimestamp = sys.argv[i + 1]
-        elif sys.argv[i] == "--end" or sys.argv[i] == "-e":
+        elif sys.argv[i] == "-e" or sys.argv[i] == "--end":
             endTimestamp = sys.argv[i + 1]
-        elif sys.argv[i] == "--buttonURL" or sys.argv[i] == "-url":
+        elif sys.argv[i] == "-url" or sys.argv[i] == "--buttonURL":
             buttonURL = sys.argv[i + 1]
-        elif sys.argv[i] == "--buttonText" or sys.argv[i] == "-bt":
-            buttonText = sys.argv[i + 1]
+        elif sys.argv[i] == "-bt" or sys.argv[i] == "--buttonText":
+            buttonText = " ".join(sys.argv[i + 1 :]).split("-")[0].strip()
 
 # if the clientId is not set, exit the program
 if clientId == "":
@@ -123,8 +122,8 @@ RPC.connect()
 
 def updatePresence():
     RPC.update(
-        state=text1 if text1 != "" else None,
-        details=text2 if text2 != "" else None,
+        details=text1 if text1 != "" else None,
+        state=text2 if text2 != "" else None,
         large_image=largeImageKey if largeImageKey != "" else None,
         large_text=largeImageText if largeImageText != "" else None,
         small_image=smallImageKey if smallImageKey != "" else None,
