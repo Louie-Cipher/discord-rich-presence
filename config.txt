@@ -1,5 +1,5 @@
 clientId=836247609029951599
-text1=Ranked
+text1=
 text2=
 largeImageKey=whatsappgold
 largeImageText=
@@ -7,5 +7,5 @@ smallImageKey=
 smallImageText=
 startTimestamp=
 endTimestamp=
-buttonURL=
-buttonText=
+buttonURL=https://github.com/Louie-Cipher/discord-rpc/releases/latest
+buttonText=Join WhatsApp2 beta
