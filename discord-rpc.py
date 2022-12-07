@@ -40,10 +40,13 @@ button1Text = ""
 button2URL = ""
 button2Text = ""
 
-# read the properties from the config.txt file. if the file doesn't exist, create it
-try:
-    with open("config.txt", "r") as f:
-        for line in f:
+
+def readConfig(filePath: str):
+    with open(filePath, "r") as file:
+
+        global clientId, text1, text2, largeImageKey, largeImageText, smallImageKey, smallImageText, startTimestamp, endTimestamp, button1URL, button1Text, button2URL, button2Text
+
+        for line in file:
 
             if line.startswith("clientId"):
                 clientId = line.split("=")[1].strip()
@@ -84,33 +87,15 @@ try:
             elif line.startswith("button2Text"):
                 button2Text = "=".join(line.split("=")[1:]).strip()
 
-except FileNotFoundError:
-    # only create the file if there are no arguments
-    if len(sys.argv) == 1:
-        with open("config.txt", "w") as f:
-            f.write(
-                """clientId=
-text1=
-text2=
-largeImageKey=
-largeImageText=
-smallImageKey=
-smallImageText=
-startTimestamp=
-endTimestamp=
-button1URL=
-button1Text=
-button2URL=
-button2Text=
-"""
-            )
-        print("Arquivo de configuração criado com sucesso! Preencha-o e execute novamente.")
-        input()
-        exit()
+
+readConfig("./config.txt")
 
 # read the properties from the arguments, overriding the config.txt file
 if len(sys.argv) > 1:
     for i in range(1, len(sys.argv)):
+
+        if sys.argv[i] == "--config":
+            readConfig(sys.argv[i + 1])
 
         if sys.argv[i] == "-id" or sys.argv[i] == "--clientId":
             clientId = sys.argv[i + 1]
