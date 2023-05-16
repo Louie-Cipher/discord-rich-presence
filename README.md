@@ -1,4 +1,4 @@
-# Discord RPC
+# Discord Rich Presence
 
 Uma simples aplicação CLI para criar uma Rich Presence no Discord.
 
